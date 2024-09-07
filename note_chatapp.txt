@@ -1,3 +1,5 @@
+Project started on Aug 24th.
+
 First test if the below apps is working in the local machine
 in the project folder
 python app.py
