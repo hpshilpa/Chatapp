@@ -1,0 +1,25 @@
+First test if the below apps is working in the local machine
+in the project folder
+python app.py
+Your webservice app running
+
+now test with the below command
+curl -X POST http://127.0.0.1:5001/message -H "Content-Type: application/json" -d "{\"message\": \"hi\"}"
+
+-- building docker python chat app
+
+docker build -t chat-app .
+docker run -d -p 5001:5001 chat-app
+
+-- test docker
+curl -X POST http://127.0.0.1:5001/message -H "Content-Type: application/json" -d "{\"message\": \"hi\"}"
+
+-- Ngork 
+docker network create ngrok_chatapp
+docker run -e NGROK_AUTHTOKEN=2lR3h4V8mFtHdogFt03wepMnBXi_7aDZAjhGEo3KnNKqrjEH9 --network ngrok_chatapp --name ngrok_chatapp ngrok/ngrok:alpine http chat-app:5001
+docker run -it --network ngrok_chatapp --name chat-app -p 5001:5001 chat-app 
+
+https://ff34-207-144-225-210.ngrok-free.app/
+
+
+curl -X POST https://ff34-207-144-225-210.ngrok-free.app/message -H "Content-Type: application/json" -d "{\"message\": \"hi\"}"
